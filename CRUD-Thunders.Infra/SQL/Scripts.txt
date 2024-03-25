@@ -1,0 +1,27 @@
+﻿Table User regras:
+Criará um registro com id aletório do tipo Guid
+Não aceitará nome do Usuário null e o tamanho max(200)
+
+CREATE TABLE [User]
+(
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    Name NVARCHAR(200) NOT NULL
+);
+
+Table Activity regras:
+Criará um registro com id aletório do tipo Guid
+Não aceitará nome do Usuário null e o tamanho max(200)
+A descrição será opcional
+A data será obrigatória e será adicionada assim que o registro for salvo
+Terá uma chave estragueira referenciando seu usuário
+
+CREATE TABLE Activity
+(
+    Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    Name NVARCHAR(200) NOT NULL,
+    Description NVARCHAR(500),
+    Date DATETIME DEFAULT GETDATE() NOT NULL,
+    UserId UNIQUEIDENTIFIER NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES [User](Id)
+);
+
