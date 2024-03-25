@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace CRUD_Thunders.Application.IServices
 {
-    public interface IUserService
+    public interface IActivityService
     {
-        List<UserDTO> GetUsers();
-        User GetUserById(Guid id);
-        void PostUser(User user);
-        void DeleteUser(Guid Id);
-        void UpdateUser(User user);
+        List<ActivityDTO> GetActivities();
+        void PostActivity(Activity activity);
+        void DeleteActivity(Guid Id);
+        void UpdateActivity(Activity activity);
     }
 }

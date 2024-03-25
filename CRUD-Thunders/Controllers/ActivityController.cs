@@ -8,22 +8,20 @@ namespace CRUD_Thunders.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ActivityController : ControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly IActivityService _activityService;
+        public ActivityController(IActivityService activityService)
         {
-            _userService = userService;
+            _activityService = activityService;
         }
-
         [HttpGet("List")]
-        public ActionResult<List<UserDTO>> ListUsers()
+        public ActionResult<List<ActivityDTO>> ListActivities()
         {
             try
             {
-                var listUser = _userService.GetUsers();
-
-                return Ok(listUser);
+                var activityList = _activityService.GetActivities();
+                return Ok(activityList);
             }
             catch (Exception ex)
             {
@@ -33,13 +31,19 @@ namespace CRUD_Thunders.Controllers
         }
 
         [HttpPost("Post")]
-        public ActionResult PostUser(User user)
+        public ActionResult PostActivity(Activity activity)
         {
             try
             {
-                _userService.PostUser(user);
+                if (!activity.IsValid())
+                {
+                    return BadRequest("O usuário relacionado não foi fornecido.");
+                }
 
-                return Ok("Usuário cadastrado com sucesso!");
+                _activityService.PostActivity(activity);
+
+                return Ok("Atividade criada com sucesso");
+
             }
             catch (Exception ex)
             {
@@ -50,12 +54,13 @@ namespace CRUD_Thunders.Controllers
 
         [HttpPut("Update")]
 
-        public ActionResult UpdateUser(User user)
+        public ActionResult UpdateActivity(Activity activity)
         {
             try
             {
-                _userService.UpdateUser(user);
-                return Ok("Usuário atualizado com sucesso!");
+                _activityService.UpdateActivity(activity);
+
+                return Ok("Atividade Atualizada");
             }
             catch (Exception ex)
             {
@@ -63,12 +68,13 @@ namespace CRUD_Thunders.Controllers
             }
         }
         [HttpDelete("Delete/{Id}")]
-        public ActionResult DeleteUser(Guid Id)
+        public ActionResult DeleteActivity(Guid Id)
         {
             try
             {
-                 _userService.DeleteUser(Id);
-                return Ok("Usuário deletado com sucesso!");
+                _activityService.DeleteActivity(Id);
+
+                return Ok("Atividade deletada");
             }
             catch (Exception ex)
             {
@@ -76,5 +82,6 @@ namespace CRUD_Thunders.Controllers
                 return StatusCode(500, $"Erro ao processar a requisição: {ex.Message}");
             }
         }
+
     }
 }

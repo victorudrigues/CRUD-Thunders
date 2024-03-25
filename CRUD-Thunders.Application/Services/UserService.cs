@@ -35,12 +35,12 @@ namespace CRUD_Thunders.Application.Services
             }
             
         }
-        public string PostUser(User user)
+        public void PostUser(User user)
         {
             try
             {
                 _userRepository.PostUser(user);
-                return "Usuário salvo com sucesso";
+                
 
             }
             catch (Exception ex) 
@@ -49,7 +49,7 @@ namespace CRUD_Thunders.Application.Services
             }
         }
 
-        public string UpdateUser(User user)
+        public void UpdateUser(User user)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace CRUD_Thunders.Application.Services
                 // Salva as alterações no banco de dados
                 _context.SaveChanges();
 
-                return "Usuário Atualizado com sucesso";
+                
 
             }
             catch (Exception ex) 
@@ -80,20 +80,33 @@ namespace CRUD_Thunders.Application.Services
                 throw new Exception(ex.Message);
             }
         }
-        public string DeleteUser(Guid Id)
+        public void DeleteUser(Guid Id)
         {
             try
             {   //Selecionar usuário
                 var user = _userRepository.GetUserById(Id);
                 //Deleta usuário
                 _userRepository.DeleteUser(user);
-                return "Usuário deletado com sucesso";
+               
             }
             catch (Exception ex) 
             {
                 throw new Exception(ex.Message);
             }
         }
-        
+
+        public User GetUserById(Guid id)
+        {
+            try
+            { 
+                return  _userRepository.GetUserById(id);
+               
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
+        }
     }
 }
