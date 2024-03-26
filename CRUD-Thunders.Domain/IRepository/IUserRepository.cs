@@ -13,6 +13,11 @@ namespace CRUD_Thunders.Domain.IRepository
         User GetUserById(Guid id);
         void PostUser(User user);
         void DeleteUser(User user);
+        void UpdateUser(User user);
 
+        // Metodos
+        //Comparação
+        bool AreActivitiesEqual(Activity dtActivity, Activity newActivity);
+        
     }
 }
