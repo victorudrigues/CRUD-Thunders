@@ -11,8 +11,10 @@ namespace CRUD_Thunders.Application.IServices
     public interface IActivityService
     {
         List<ActivityDTO> GetActivities();
+        Activity GetActivityById(Guid id);
         void PostActivity(Activity activity);
         void DeleteActivity(Guid Id);
         void UpdateActivity(Activity activity);
+
     }
 }

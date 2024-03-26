@@ -25,7 +25,6 @@ namespace CRUD_Thunders.Infra.Repository
         {
             return _context.Activity.FirstOrDefault(x => x.Id == id);
 
-            
         }
         public void PostActivity(Activity activity)
         {

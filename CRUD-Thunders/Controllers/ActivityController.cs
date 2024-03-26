@@ -30,6 +30,22 @@ namespace CRUD_Thunders.Controllers
             }
         }
 
+        [HttpGet("ListById/{Id}")]
+        public ActionResult<List<ActivityDTO>> ListActivity(Guid Id)
+        {
+            try
+            {
+                var activity = _activityService.GetActivityById(Id);
+
+                return Ok(activity);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Erro ao processar a requisição: {ex.Message}");
+            }
+        }
+
         [HttpPost("Post")]
         public ActionResult PostActivity(Activity activity)
         {

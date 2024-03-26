@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CRUD_Thunders.Application.Services
 {
-    public class ActivityService: IActivityService
+    public class ActivityService : IActivityService
     {
         private readonly IActivityRepository _activityRepository;
         private readonly IMapper _mapper;
@@ -45,7 +45,7 @@ namespace CRUD_Thunders.Application.Services
             try
             {
                 _activityRepository.PostActivity(activity);
-                
+
             }
             catch (Exception ex)
             {
@@ -80,7 +80,7 @@ namespace CRUD_Thunders.Application.Services
             }
             catch (Exception ex)
             {
-                
+
                 throw new Exception(ex.Message);
             }
 
@@ -93,7 +93,7 @@ namespace CRUD_Thunders.Application.Services
                 var activity = _activityRepository.GetActivityById(Id);
                 //Deleta usuário
                 _activityRepository.DeleteActivity(activity);
-                
+
             }
             catch (Exception ex)
             {
@@ -101,6 +101,22 @@ namespace CRUD_Thunders.Application.Services
             }
         }
 
-        
+        public Activity GetActivityById(Guid id)
+        {
+
+            try
+            {
+                return _activityRepository.GetActivityById(id);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+        }
+
+       
     }
 }
