@@ -1,6 +1,7 @@
 ﻿using CRUD_Thunders.Domain.Entities;
 using CRUD_Thunders.Domain.IRepository;
 using CRUD_Thunders.Infra.Infrastructure.CRUDContext;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace CRUD_Thunders.Infra.Repository
         }
         public User GetUserById(Guid id)
         {
-            return _context.User.FirstOrDefault(x => x.Id == id);
+            return _context.User.Include(x => x.Activities).FirstOrDefault(x => x.Id == id);
+            
         }
 
         public void PostUser(User user)

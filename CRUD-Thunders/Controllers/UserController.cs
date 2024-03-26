@@ -32,6 +32,22 @@ namespace CRUD_Thunders.Controllers
             }
         }
 
+        [HttpGet("ListById/{Id}")]
+        public ActionResult<UserDTO> ListUser(Guid Id)
+        {
+            try
+            {
+                var User = _userService.GetUserById(Id);
+
+                return Ok(User);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Erro ao processar a requisição: {ex.Message}");
+            }
+        }
+
         [HttpPost("Post")]
         public ActionResult PostUser(User user)
         {
