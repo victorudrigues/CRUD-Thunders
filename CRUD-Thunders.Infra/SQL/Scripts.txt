@@ -25,3 +25,32 @@ CREATE TABLE Activity
     FOREIGN KEY (UserId) REFERENCES [User](Id)
 );
 
+
+Populando banco de dados para testes:
+
+-- Inserir dados na tabela [User]
+INSERT INTO [User] (Name) VALUES
+('João Silva'),
+('Maria Oliveira'),
+('Pedro Santos'),
+('Ana Costa'),
+('José Pereira'),
+('Carla Rodrigues'),
+('Antônio Almeida'),
+('Mariana Martins'),
+('Paulo Ferreira'),
+('Sônia Souza');
+
+-- Inserir dados na tabela Activity
+INSERT INTO Activity (Name, Description, Date, UserId) VALUES
+('Correr no parque', 'Corrida matinal para exercícios', '2024-03-25T07:00:00', (SELECT Id FROM [User] WHERE Name = 'João Silva')),
+('Estudar matemática', 'Revisão para o exame final', '2024-03-25T09:00:00', (SELECT Id FROM [User] WHERE Name = 'Maria Oliveira')),
+('Preparar almoço', 'Cozinhar uma refeição especial', '2024-03-25T12:00:00', (SELECT Id FROM [User] WHERE Name = 'Pedro Santos')),
+('Reunião de equipe', 'Discussão sobre novos projetos', '2024-03-25T14:00:00', (SELECT Id FROM [User] WHERE Name = 'Ana Costa')),
+('Treino de musculação', 'Fortalecimento muscular na academia', '2024-03-25T16:00:00', (SELECT Id FROM [User] WHERE Name = 'José Pereira')),
+('Estudar inglês', 'Praticar conversação e gramática', '2024-03-25T18:00:00', (SELECT Id FROM [User] WHERE Name = 'Carla Rodrigues')),
+('Passear no parque', 'Relaxamento ao ar livre', '2024-03-25T10:00:00', (SELECT Id FROM [User] WHERE Name = 'Antônio Almeida')),
+('Comprar mantimentos', 'Ir ao supermercado fazer compras', '2024-03-25T13:00:00', (SELECT Id FROM [User] WHERE Name = 'Mariana Martins')),
+('Assistir filme', 'Sessão de cinema em casa', '2024-03-25T20:00:00', (SELECT Id FROM [User] WHERE Name = 'Paulo Ferreira')),
+('Jantar em família', 'Reunião para um jantar especial', '2024-03-25T19:00:00', (SELECT Id FROM [User] WHERE Name = 'Sônia Souza'));
+
