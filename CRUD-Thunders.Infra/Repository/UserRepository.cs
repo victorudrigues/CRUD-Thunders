@@ -22,7 +22,7 @@ namespace CRUD_Thunders.Infra.Repository
         }
         public List<User> GetUsers()
         {
-            return _context.User.ToList();
+            return _context.User.Include(x => x.Activities).ToList();
         }
         public User GetUserById(Guid id)
         {

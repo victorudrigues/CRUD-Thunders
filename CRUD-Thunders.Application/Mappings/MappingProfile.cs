@@ -15,7 +15,8 @@ namespace CRUD_Thunders.Application.Mappings
     {
         public MappingProfile() 
         {
-            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserDTO>()
+                .ForMember(x => x.Activity, opt => opt.MapFrom(src => src.Activities));
             CreateMap<Activity, ActivityDTO>().ReverseMap();
         }
     }
